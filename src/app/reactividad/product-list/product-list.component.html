@@ -1,0 +1,18 @@
+<app-nav-bar-cart></app-nav-bar-cart>
+<div class="w3-container">
+    <ul class="w3-ul w3-card-4 w3-margin-top w3-light-grey">
+        <li class="w3-bar" *ngFor="let product of products">
+            <!--<img class="w3-bar-item w3-circle w3-hide-small" [src]="product.thumbnail" alt="" style="width: 85px;">-->
+            <div class="w3-bar-item">
+                <h4>{{product.title}}</h4>
+                <p>
+                    {{product.description}}
+                    &nbsp;
+                    <button class="w3-button w3-white w3-border w3-round-large" (click)="addProductToCart(product)">Add
+                        To Cart</button>
+                </p>
+            </div>
+        </li>
+
+    </ul>
+</div>

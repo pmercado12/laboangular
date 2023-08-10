@@ -1,0 +1,26 @@
+<ul class="w3-ul ">
+    <li class="w3-display-container" *ngFor="let product of (myCart$ | async)">
+        <div class="w3-bar-item">
+            <img class="w3-bar-item w3-circle w3-hide-small" [src]="product.thumbnail" alt="" style="width: 85px;">
+            {{product.title}} {{', Price: ' + product.price + ' USD Quantity:'+product.quantity + ' Total:' +
+            (product.price * product.quantity) + ' USD' }}
+            <span (click)="removeProduct(product)" class="w3-button w3-display-right">&times;</span>
+        </div>
+    </li>
+    <li class="w3-display-container"><b>TOTAL: {{getTotal((myCart$ | async)) + ' USD' }}</b></li>
+</ul>
+
+<!--
+<ul class="w3-ul w3-card-4">
+    <li class="w3-bar" *ngFor="let product of (myCart$ | async)">
+        <span (click)="removeProduct(product)" class="w3-bar-item w3-button w3-xlarge w3-right">&times;</span>
+        <img [src]="product.thumbnail" class="w3-bar-item w3-circle" style="width:85px">
+        <div class="w3-bar-item">
+            <span class="w3-large">{{product.title}}</span><br>
+            <span>{{', Price: ' + product.price + ' USD Quantity:'+product.quantity + ' Total:' +
+                (product.price * product.quantity) + ' USD' }}</span>
+        </div>
+    </li>
+    <li class="w3-display-container"><b>TOTAL: {{getTotal((myCart$ | async)) + ' USD' }}</b></li>
+</ul>
+-->

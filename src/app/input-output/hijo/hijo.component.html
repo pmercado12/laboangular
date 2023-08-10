@@ -1,0 +1,19 @@
+<div class="w3-center">
+    <div>
+        <h2>Contador Hijo</h2>
+        <h4>{{hcontador}}</h4>
+    </div>
+
+    <div class="w3-bar">
+        <button class="w3-button w3-round-large w3-indigo w3-bat-item w3-margin-right" (click)="multiplicar()">
+            Multiplicar
+        </button>
+        <button class="w3-button w3-round-large w3-orange w3-bat-item" (click)="dividir()">
+            Dividir
+        </button>
+    </div>
+
+    <div class="w3-margin-top">
+        <app-nieto [ncontador]="hcontador" (resetContador)="asignaAndEmite($event)"></app-nieto>
+    </div>
+</div>

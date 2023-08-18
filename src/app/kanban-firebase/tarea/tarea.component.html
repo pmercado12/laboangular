@@ -1,0 +1,14 @@
+<div class="w3-card">
+    <div class="w3-container">
+        <h5>{{tarea?.titulo}}</h5>
+        <p>{{tarea?.descripcion}}</p>
+        <div class="w3-bar">
+            <button class="w3-button" (click)="editar.emit(tarea)">
+                <i class="fa fa-pencil-square-o"></i>
+            </button>
+            <button class="w3-button" (click)="eliminar.emit(tarea)">
+                <i class="fa fa-trash"></i>
+            </button>
+        </div>
+    </div>
+</div>

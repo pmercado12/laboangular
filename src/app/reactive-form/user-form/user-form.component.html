@@ -1,0 +1,100 @@
+<div class="w3-container">
+    <div class="w3-row">
+        <div class="w3-col s12 m6 l6">
+            <form class="w3-container" [formGroup]="userForm" (ngSubmit)="submitForm()">
+
+                <label for="inpid">ID:</label>
+                <input id="inpid" class="w3-input" type="number" formControlName="id" name="id">
+
+                <label for="inpname">Name:</label>
+                <input id="inpname" class="w3-input" type="text" formControlName="name" name="name">
+                <div class="w3-text-red" *ngIf="userForm.get('name')?.hasError('required') && userForm.get('name')?.touched">
+                    Name is required
+                </div>
+
+                <label for="inpusername">Username:</label>
+                <input id="inpusername" class="w3-input" type="text" formControlName="username" name="username">
+
+                <label for="inpemail">Email:</label>
+                <input id="inpemail" class="w3-input" type="email" formControlName="email" name="email">
+                <div class="w3-text-red" *ngIf="userForm.get('email')?.hasError('email') && userForm.get('email')?.touched">
+                    Email no v&aacute;lido
+                </div>
+
+                <label for="inppassword">Password:</label>
+                <input id="inppassword" class="w3-input" type="password" formControlName="password" name="password">
+
+                <div formGroupName="address">
+                    <h4>Address:</h4>
+                    <label for="inpstreet">Street:</label>
+                    <input id="inpstreet" class="w3-input" type="text" formControlName="street" name="street">
+
+                    <label for="inpsuite">Suite:</label>
+                    <input id="inpsuite" class="w3-input" type="text" formControlName="suite" name="suite">
+
+                    <label for="inpcity">City:</label>
+                    <input id="inpcity" class="w3-input" type="text" formControlName="city" name="city">
+
+                    <label for="inpzipcode">Zip Code:</label>
+                    <input id="inpzipcode" class="w3-input" type="text" formControlName="zipcode" name="zipcode">
+
+                    <div formGroupName="geo">
+                        <h4>Geo</h4>
+                        <label for="inplat">Lat:</label>
+                        <input id="inplat" class="w3-input" type="text" formControlName="lat" name="lat">
+
+                        <label for="inplng">Lng:</label>
+                        <input id="inplng" class="w3-input" type="text" formControlName="lng" name="lng">
+                    </div>
+                </div>
+
+                <label for="inpphone">Phone:</label>
+                <input id="inpphone" class="w3-input" type="text" formControlName="phone" name="phone">
+
+                <label for="inpwebsite">Website:</label>
+                <input id="inpwebsite" class="w3-input" type="text" formControlName="website" name="website">
+
+                <div formGroupName="company">
+                    <h4>Company</h4>
+                    <label for="inpcompanyname">Name:</label>
+                    <input id="inpcompanyname" class="w3-input" type="text" formControlName="name" name="name">
+
+                    <label for="inpcompanycatchPhrase">Catch Phrase:</label>
+                    <input id="inpcompanycatchPhrase" class="w3-input" type="text" formControlName="catchPhrase"
+                        name="catchPhrase">
+
+                    <label for="inpcompanybs">Bs:</label>
+                    <input id="inpcompanybs" class="w3-input" type="text" formControlName="bs" name="bs">
+                </div>
+
+                <div class="w3-padding-16">
+                    <button class="w3-button w3-blue" [disabled]="!userForm.valid" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+        <div class="w3-col s12 m6 l6">
+            <table class="w3-table w3-striped w3-border">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Points</th>
+                </tr>
+                <tr>
+                    <td>Jill</td>
+                    <td>Smith</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>Eve</td>
+                    <td>Jackson</td>
+                    <td>94</td>
+                </tr>
+                <tr>
+                    <td>Adam</td>
+                    <td>Johnson</td>
+                    <td>67</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

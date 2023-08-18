@@ -1,0 +1,17 @@
+<app-nav-bar-shop></app-nav-bar-shop>
+<div class="w3-container">
+    <ul class="w3-ul w3-card-4 w3-light-grey w3-margin-top">
+        <li class="w3-bar" *ngFor="let product of products">
+            <div class="w3-bar-item">
+                <h4>{{ product.name }}</h4>
+                <p>
+                    {{ product.description }}
+                    &nbsp;
+                    <button (click)="addToCart(product)" class="w3-button w3-while w3-border w3-round-large">
+                        Add To Cart
+                    </button>
+                </p>
+            </div>
+        </li>
+    </ul>
+</div>

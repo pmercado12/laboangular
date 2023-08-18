@@ -1,0 +1,56 @@
+<div class="w3-container w3-margin-top">
+    <div class="w3-row">
+        <div class="w3-col s12 m4 l4">
+            <div class="w3-container w3-border">
+                <div class="w3-bar">
+                    <div class="w3-bar-item">
+                        <h4>Backlog</h4>
+                    </div>
+                    <div class="w3-bar-item w3-right">
+                        <button class="w3-button " (click)="openModal='block'">
+                            <i class="fa fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+                <div *ngFor="let itm of tareas">
+                    <app-tarea [tarea]="itm" *ngIf="itm.estado=='backlog'" (eliminar)="eliminarTarea($event)" (editar)="editarTarea($event)"></app-tarea>
+                </div>
+            </div>
+        </div>
+        <div class="w3-col s12 m4 l4">
+            <div class="w3-container w3-border">
+                <h4>In-process</h4>
+            </div>
+        </div>
+        <div class="w3-col s12 m4 l4">
+            <div class="w3-container w3-border">
+                <h4>Done</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="w3-modal" [ngStyle]="{display:openModal}">
+    <div class="w3-modal-content">
+        <header class="w3-container w3-indigo">
+            <span (click)="openModal='none'" class="w3-button w3-display-topright">&times;</span>
+            <h5>Tarea</h5>
+        </header>
+        <div class="w3-container">
+            <form [formGroup]="form" class="w3-container" (ngSubmit)="onRegistrarTarea()">
+                <label>T&iacute;tulo</label>
+                <input formControlName="titulo" class="w3-input" type="text">
+                <label>Descripci&oacute;n</label>
+                <input formControlName="descripcion" class="w3-input" type="text">
+                <label>Estado</label>
+                <input formControlName="estado" class="w3-input" type="text">
+                <br>
+                <button type="submit" class="w3-button w3-indigo w3-right">Registrar</button>
+            </form>
+        </div>
+        <footer class="w3-container ">
+            <br>
+        </footer>
+    </div>
+</div>

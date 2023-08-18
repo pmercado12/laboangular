@@ -1,0 +1,21 @@
+<div class="w3-sidebar w3-bar-block w3-animate-right w3-pale-yellow" style="width:300px;right:0;"
+    [ngStyle]="{'display': displayMenu}">
+    <button class="w3-button w3-bar-item" (click)="displayMenu='none' ">
+        My Cart
+        &times;
+    </button>
+    <div class="w3-bar-item">
+        <ul class="w3-ul">
+            <li *ngFor="let product of (cart$ | async) ">
+                {{ product.name }}, Price: {{product.price}} USD
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="w3-bar">
+    <button class="w3-button w3-bar-item w3-right w3-large" (click)="displayMenu='block'
+">
+        <i class="fa fa-shopping-cart"></i>
+        &nbsp;<span class="w3-badge w3-red">{{ (cart$ | async)?.length }}</span>
+    </button>
+</div>

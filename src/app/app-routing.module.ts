@@ -18,6 +18,22 @@ const routes: Routes = [
   {
     path: 'reactividad',
     loadChildren: () => import('./reactividad/reactividad.module').then(m => m.ReactividadModule)
+  },
+  {
+    path: 'redux',
+    loadChildren: () => import('./ngrx-redux/ngrx-redux.module').then(m => m.NgrxReduxModule)
+  },
+  {
+    path: 'redux-shop',
+    loadChildren: () => import('./shop-redux/shop-redux.module').then(m => m.ShopReduxModule)
+  },
+  {
+    path: 'reactive-form',
+    loadChildren: () => import('./reactive-form/reactive-form.module').then(m => m.ReactiveFormModule)
+  },
+  {
+    path: 'kanban-firebase',
+    loadChildren: () => import('./kanban-firebase/kanban-firebase.module').then(m => m.KanbanFirebaseModule)
   }
 ];
 

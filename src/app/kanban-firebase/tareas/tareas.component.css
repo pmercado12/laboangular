@@ -1,0 +1,6 @@
+.drag-container {
+    width: 300px;
+    height: 600px;
+    border: 2px solid #ccc;
+    padding: 10px;
+}

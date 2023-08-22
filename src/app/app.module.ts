@@ -7,12 +7,14 @@ import { InicioComponent } from './componentes/inicio/inicio.component';
 import { NavBarComponent } from './componentes/nav-bar/nav-bar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { DragDropComponent } from './componentes/drag-drop/drag-drop.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     InicioComponent,
-    NavBarComponent
+    NavBarComponent,
+    DragDropComponent
   ],
   imports: [
     BrowserModule,

@@ -1,35 +1,56 @@
 <div class="w3-container w3-margin-top">
     <div class="w3-row">
         <div class="w3-col s12 m4 l4">
-            <div class="w3-container w3-border">
-                <div class="w3-bar">
-                    <div class="w3-bar-item">
-                        <h4>Backlog</h4>
+            <div class="drag-container w3-pale-blue" (drop)="drop($event,'backlog')" (dragover)="allowDrop($event)">
+                <div class="w3-container w3-border">
+                    <div class="w3-bar">
+                        <div class="w3-bar-item">
+                            <h4>Backlog</h4>
+                        </div>
+                        <div class="w3-bar-item w3-right">
+                            <button class="w3-button " (click)="openModal='block'">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
                     </div>
-                    <div class="w3-bar-item w3-right">
-                        <button class="w3-button " (click)="openModal='block'">
-                            <i class="fa fa-plus"></i>
-                        </button>
+                    <div *ngFor="let itm of tareas">
+                        <div draggable="true" (dragstart)="dragStart($event,itm)">
+                            <app-tarea [tarea]="itm" *ngIf="itm.estado=='backlog'" (eliminar)="eliminarTarea($event)"
+                                (editar)="editarTarea($event)"></app-tarea>
+                        </div>
+                        <br>
                     </div>
-                </div>
-                <div *ngFor="let itm of tareas">
-                    <app-tarea [tarea]="itm" *ngIf="itm.estado=='backlog'" (eliminar)="eliminarTarea($event)" (editar)="editarTarea($event)"></app-tarea>
                 </div>
             </div>
         </div>
         <div class="w3-col s12 m4 l4">
-            <div class="w3-container w3-border">
+            <div class="drag-container w3-pale-blue" (drop)="drop($event,'in-process')" (dragover)="allowDrop($event)">
                 <h4>In-process</h4>
+                <div *ngFor="let itm of tareas">
+                    <div draggable="true" (dragstart)="dragStart($event,itm)">
+                        <app-tarea [tarea]="itm" *ngIf="itm.estado == 'in-process' " (editar)="editarTarea($event)"
+                            (eliminar)="eliminarTarea($event)">
+                        </app-tarea>
+                    </div>
+                    <br>
+                </div>
             </div>
         </div>
         <div class="w3-col s12 m4 l4">
-            <div class="w3-container w3-border">
+            <div class="drag-container w3-pale-blue" (drop)="drop($event,'done')" (dragover)="allowDrop($event)">
                 <h4>Done</h4>
+                <div *ngFor="let itm of tareas">
+                    <div draggable="true" (dragstart)="dragStart($event,itm)">
+                        <app-tarea [tarea]="itm" *ngIf="itm.estado == 'done' " (editar)="editarTarea($event)"
+                            (eliminar)="eliminarTarea($event)">
+                        </app-tarea>
+                    </div>
+                    <br>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 
 <div class="w3-modal" [ngStyle]="{display:openModal}">
     <div class="w3-modal-content">
@@ -41,12 +62,18 @@
             <form [formGroup]="form" class="w3-container" (ngSubmit)="onRegistrarTarea()">
                 <label>T&iacute;tulo</label>
                 <input formControlName="titulo" class="w3-input" type="text">
+                <div class="w3-text-red"
+                    *ngIf="form.get('titulo')?.hasError('required') && form.get('titulo')?.touched ">
+                    Titulo es requerido
+                </div>
                 <label>Descripci&oacute;n</label>
                 <input formControlName="descripcion" class="w3-input" type="text">
-                <label>Estado</label>
-                <input formControlName="estado" class="w3-input" type="text">
+                <div class="w3-text-red" *ngIf="form.get('descripcion')?.hasError('required') &&
+form.get('descripcion')?.touched ">
+                    Descripcion es requerido
+                </div>
                 <br>
-                <button type="submit" class="w3-button w3-indigo w3-right">Registrar</button>
+                <button [disabled]="!form.valid" type="submit" class="w3-button w3-indigo w3-right">Registrar</button>
             </form>
         </div>
         <footer class="w3-container ">

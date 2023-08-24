@@ -1,13 +1,14 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ITarea } from '../tarea';
 import { FormBuilder, Validators } from '@angular/forms';
+import { TareasService } from '../tareas.service';
 
 @Component({
     selector: 'app-tareas',
     templateUrl: './tareas.component.html',
     styleUrls: ['./tareas.component.css']
 })
-export class TareasComponent {
+export class TareasComponent implements OnInit {
     tareas: ITarea[];
     tarea: ITarea;
     openModal: string;
@@ -15,6 +16,7 @@ export class TareasComponent {
     dragData: any;
 
     private fb = inject(FormBuilder);
+    private tareasService = inject(TareasService);
 
     form = this.fb.group({
         id: [''],
@@ -29,19 +31,35 @@ export class TareasComponent {
         this.openModal = 'none';
     }
 
+    ngOnInit(): void {
+        this.cargarTareas();
+    }
+    cargarTareas() {
+        this.tareasService.getTareas().subscribe(resp => {
+            console.log(resp);
+            this.tareas = [...resp]
+        })
+    }
+
     onRegistrarTarea() {
         if (this.form.valid) {
-            const { id } = this.form.getRawValue();
-            if (id) {
-                const index = this.tareas.findIndex(t => t.id == id);
+
+            let tarea: ITarea = this.form.getRawValue() as ITarea;
+
+            console.log(tarea);
+
+            if (tarea.id) {
+                /*const index = this.tareas.findIndex(t => t.id == id);
                 if (index !== -1) {
                     this.tareas[index] = this.form.getRawValue() as ITarea;
-                }
+                }*/
+                this.tareasService.updateTarea(tarea);
             } else {
                 let tar: ITarea = this.form.getRawValue() as ITarea;
-                this.idTarea += 1;
+                /*this.idTarea += 1;
                 tar.id = this.idTarea.toString()
-                this.tareas.push(tar);
+                this.tareas.push(tar);*/
+                this.tareasService.addTarea(tarea);
             }
             this.form.reset();
             this.openModal = 'none';
@@ -56,7 +74,8 @@ export class TareasComponent {
     }
 
     eliminarTarea(tar: ITarea) {
-        this.tareas = this.tareas.filter(t => t.id !== tar.id);
+        this.tareasService.removeTarea(tar);
+        //this.tareas = this.tareas.filter(t => t.id !== tar.id);
     }
 
     dragStart(event: DragEvent, tar: ITarea) {
@@ -72,10 +91,11 @@ export class TareasComponent {
         target.appendChild(this.dragData);
         // update tarea
         this.tarea.estado = estado;
-        const index = this.tareas.findIndex(t => t.id == this.tarea.id);
+        this.tareasService.updateTarea(this.tarea);
+        /*const index = this.tareas.findIndex(t => t.id == this.tarea.id);
         if (index !== -1) {
             this.tareas[index] = this.tarea;
             this.tarea = { id: '', titulo: '', descripcion: '', estado: '' };
-        }
+        }*/
     }
 }

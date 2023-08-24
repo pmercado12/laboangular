@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "angular-kanban-mineco-pamm": {
+      "hosting": {
+        "laboratorio": [
+          "angular-kanban-mineco-pamm"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "angular-kanban-mineco-pamm"
+  }
+}

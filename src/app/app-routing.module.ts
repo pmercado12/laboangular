@@ -34,6 +34,10 @@ const routes: Routes = [
   {
     path: 'kanban-firebase',
     loadChildren: () => import('./kanban-firebase/kanban-firebase.module').then(m => m.KanbanFirebaseModule)
+  },
+  {
+    path: 'pwa-capacitor',
+    loadChildren: () => import('./pwa-capacitor/pwa-capacitor.module').then(m => m.PwaCapacitorModule)
   }
 ];
 

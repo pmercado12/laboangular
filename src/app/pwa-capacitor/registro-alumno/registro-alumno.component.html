@@ -1,0 +1,30 @@
+<div class="w3-container w3-margin-top">
+    <div class="w3-bar w3-teal">
+        <label class="w3-bar-item">Registro de Alumno</label>
+        <button class="w3-button w3-bar-item w3-teal w3-right" (click)="takePicture()">
+            <i class="fa fa-camera"></i>
+        </button>
+    </div>
+    <div class="w3-row">
+        <div class="w3-col s12 m6 l6">
+            <div class="image-container">
+                <div class="image w3-margin-top">
+                    <img [src]="imageUrl">
+                </div>
+            </div>
+        </div>
+        <div class="w3-col s12 m6 l6">
+            <form class="w3-container w3-white w3-margin-top">
+                <br>
+                <input class="w3-input" type="text" placeholder="Nombre Completo" name="nombre_completo"
+                    [(ngModel)]="_alumno.nombre_completo" required />
+                <input class="w3-input" type="text" placeholder="Doc.Identidad" name="doc_identidad"
+                    [(ngModel)]="_alumno.doc_identidad" required />
+                <br>
+                <button [disabled]="isButtonDisabled" class="w3-button w3-teal w3-block w3-round-xxlarge"
+                    type="submit">Registrar</button>
+                <br>
+            </form>
+        </div>
+    </div>
+</div>

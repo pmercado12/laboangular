@@ -4,11 +4,13 @@ import { CommonModule } from '@angular/common';
 import { PwaCapacitorRoutingModule } from './pwa-capacitor-routing.module';
 import { RegistroAlumnoComponent } from './registro-alumno/registro-alumno.component';
 import { FormsModule } from '@angular/forms';
+import { ListaAlumnosComponent } from './lista-alumnos/lista-alumnos.component';
 
 
 @NgModule({
   declarations: [
-    RegistroAlumnoComponent
+    RegistroAlumnoComponent,
+    ListaAlumnosComponent
   ],
   imports: [
     CommonModule,

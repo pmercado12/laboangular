@@ -1,0 +1,17 @@
+<div class="w3-container">
+    <h2>Lista de alumnos</h2>
+    <ul class="w3-ul w3-card-4">
+        <li class="w3-bar" *ngFor="let alumno of listaAlumnos">
+            <span (click)="eliminar(alumno)" class="w3-bar-item w3-button w3-xlarge w3-right">&times;</span>
+            <img [src]="alumno.imagen" class="w3-bar-item w3-circle" style="width:85px;height: 85px;">
+            <div class="w3-bar-item">
+                <span class="w3-large">{{alumno.nombre_completo}}</span><br>
+                <span>{{alumno.doc_identidad}}</span>
+            </div>
+        </li>
+    </ul>
+    <div class="w3-padding w3-display-bottomright">
+        <button class="w3-button w3-circle w3-teal"
+            routerLink="/pwa-capacitor/registro-alumno"><b>+</b></button>
+    </div>
+</div>

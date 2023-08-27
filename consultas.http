@@ -1,0 +1,7 @@
+###
+GET https://codigoinfo.xyz/api/alumnos
+###
+GET https://codigoinfo.xyz/api/alumnos/64e8042c926c521a4900bb92
+
+###
+DELETE https://codigoinfo.xyz/api/alumnos/64e94c458d0517704225dde9

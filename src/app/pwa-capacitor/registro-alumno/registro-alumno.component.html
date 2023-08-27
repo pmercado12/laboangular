@@ -1,5 +1,8 @@
 <div class="w3-container w3-margin-top">
     <div class="w3-bar w3-teal">
+        <button class="w3-button w3-bar-item w3-teal w3-left" routerLink="/pwa-capacitor/lista-alumnos">
+            <i class="fa fa-angle-left"></i>
+        </button>
         <label class="w3-bar-item">Registro de Alumno</label>
         <button class="w3-button w3-bar-item w3-teal w3-right" (click)="takePicture()">
             <i class="fa fa-camera"></i>
@@ -14,17 +17,27 @@
             </div>
         </div>
         <div class="w3-col s12 m6 l6">
-            <form class="w3-container w3-white w3-margin-top">
+            <form class="w3-container w3-white w3-margin-top" (ngSubmit)="registrarAlumno()" #myForm="ngForm">
                 <br>
                 <input class="w3-input" type="text" placeholder="Nombre Completo" name="nombre_completo"
-                    [(ngModel)]="_alumno.nombre_completo" required />
+                    [(ngModel)]="_alumno.nombre_completo" required #nombre="ngModel" />
+                <div *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)" class="w3-pale-red">
+                    * Nombre completo es requerido
+                </div>
                 <input class="w3-input" type="text" placeholder="Doc.Identidad" name="doc_identidad"
-                    [(ngModel)]="_alumno.doc_identidad" required />
+                    [(ngModel)]="_alumno.doc_identidad" #identidad="ngModel" required />
+                <div *ngIf="identidad.invalid && (identidad.dirty || identidad.touched ) " class="w3-pale-red">
+                    <div *ngIf="identidad.errors?.['required'] " class="w3-text-red w3-tiny">
+                        * Doc. Identidad es requerido
+                    </div>
+                </div>
                 <br>
-                <button [disabled]="isButtonDisabled" class="w3-button w3-teal w3-block w3-round-xxlarge"
+                <button [disabled]="myForm.invalid" class="w3-button w3-teal w3-block w3-round-xxlarge"
                     type="submit">Registrar</button>
                 <br>
             </form>
         </div>
     </div>
 </div>
+
+<a routerLink="/pwa-capacitor/lista-alumnos" class="w3-bar-item w3-button">pwa-capacitor</a>
